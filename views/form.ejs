@@ -1,0 +1,149 @@
+<%- include('layout/header'); -%> 
+    <body>
+
+        <% if(typeof(total)=='undefined' ){ %>
+            <div class="container">
+                <h1>Product Purchase Form</h1>
+
+                <form action="" method="post">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter name">
+
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" placeholder="Enter address">
+
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" placeholder="email@domain.com">
+
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city" placeholder="e.g Calgary">
+
+                    <label for="province">Province:</label>
+                    <input type="text" id="province" name="province" placeholder="e.g Alberta">
+
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="123-456-7890">
+
+                    <label for="product1">Product Item 1 (Quantity) - $2:</label>
+                    <input type="number" id="product1" name="product1">
+
+                    <label for="product2">Product Item 2 (Quantity) - $4:</label>
+                    <input type="number" id="product2" name="product2">
+
+                    <label for="product3">Product Item 2 (Quantity) - $5:</label>
+                    <input type="number" id="product3" name="product3">
+
+                    <button type="submit">Submit Purchase</button>
+
+                </form>
+
+            </div>
+            <% } %>
+
+
+
+                <section class="receipt_section">
+                    <div class="formData">
+                        <% if(typeof(errors) !='undefined' ){ %>
+                            <div class="error-wrapper">
+                                <% { for(var error of errors){ %>
+
+                                    <p class="errors">
+                                        <%= error.msg %>
+                                    </p>
+
+                                    <% } } %>
+                            </div>
+                            <% } %>
+                                <% if(typeof(total) !='undefined' ){ %>
+                                    <div class="receipt">
+                                        <h1 id="formResult">Your Receipt:</h1>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="2">Customer copy</th>
+                                              
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>
+                                                        <%= name %>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Email</td>
+                                                    <td>
+                                                        <%= email %>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Phone: </td>
+                                                    <td>
+                                                        <%= phone %>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Address: </td>
+                                                    <td>
+                                                        <%= address %>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>City: </td>
+                                                    <td>
+                                                        <%= city %>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Provice: </td>
+                                                    <td>
+                                                        <%= province %>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Product 1: ($2)</td>
+                                                    <td>
+                                                        <%= product1 %>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Product 2: ($4) </td>
+                                                    <td>
+                                                        <%= product2 %>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Product 3: ($5) </td>
+                                                    <td>
+                                                        <%= product3 %>
+                                                    </td>
+                                                </tr>
+                                                <tr class="total">
+                                                    <td>Subtotal: </td>
+                                                    <td>$<%= subTotal.toFixed(2) %>
+                                                    </td>
+                                                </tr>
+                                                <tr class="total">
+                                                    <th>Tax (13%) </th>
+                                                    <td>$<%= tax.toFixed(2) %>
+                                                    </td>
+                                                </tr>
+                                                <tr class="total">
+                                                    <th>Total </th>
+                                                    <td>$<%= total.toFixed(2) %>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="footer">
+                                            Thank you for your purchase!
+                                        </div>
+                                    </div>
+                                    <% } %>
+
+                    </div>
+                </section>
+    </body>
+    <%- include('layout/footer'); -%>
